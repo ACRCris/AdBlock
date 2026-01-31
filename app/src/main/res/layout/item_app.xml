@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/app_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:contentDescription="@string/app_icon_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/app_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:textSize="16sp"
+        android:textColor="?android:attr/textColorPrimary"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/app_icon"
+        app:layout_constraintEnd_toStartOf="@id/block_switch"
+        app:layout_constraintBottom_toTopOf="@id/app_package"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="App Name" />
+
+    <TextView
+        android:id="@+id/app_package"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintTop_toBottomOf="@id/app_label"
+        app:layout_constraintStart_toEndOf="@id/app_icon"
+        app:layout_constraintEnd_toStartOf="@id/block_switch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="com.example.app" />
+
+    <Switch
+        android:id="@+id/block_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/block_switch_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

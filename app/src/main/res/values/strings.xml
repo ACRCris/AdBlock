@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">AdBlock Firewall</string>
+
+    <!-- Status messages -->
+    <string name="status_stopped">Firewall: Stopped</string>
+    <string name="status_starting">Firewall: Starting…</string>
+    <string name="status_running">Firewall: Active</string>
+    <string name="status_error">Firewall: Error</string>
+
+    <!-- Buttons -->
+    <string name="start_firewall">Start Firewall</string>
+    <string name="stop_firewall">Stop Firewall</string>
+
+    <!-- Blocked count -->
+    <string name="blocked_count">Blocked apps: %1$d</string>
+    <string name="blocked_count_default">Blocked apps: 0</string>
+
+    <!-- Messages -->
+    <string name="no_apps_found">No user apps found</string>
+    <string name="no_apps_blocked">Select at least one app to block</string>
+
+    <!-- Accessibility -->
+    <string name="app_icon_description">App icon</string>
+    <string name="block_switch_description">Block this app</string>
+
+    <!-- How it works dialog -->
+    <string name="how_it_works">How It Works</string>
+    <string name="how_it_works_title">How AdBlock Firewall Works</string>
+    <string name="how_it_works_content">
+        <b>🔒 Local VPN Technology</b>\n\n
+        This app uses Android\'s VPN API to block network access for selected apps. No data leaves your device.\n\n
+
+        <b>📱 Important Limitations:</b>\n\n
+        • <b>One VPN at a time:</b> Android only allows one active VPN. If you use another VPN (corporate, privacy), this firewall will disconnect it.\n\n
+        • <b>Push notifications:</b> Some apps may still receive push notifications through Google Play Services, as these bypass direct app connections.\n\n
+        • <b>System apps:</b> Some system services cannot be blocked.\n\n
+
+        <b>🛡️ Privacy:</b>\n\n
+        • No traffic inspection or logging\n
+        • No data collection\n
+        • No internet connection required for the firewall itself\n\n
+
+        <b>⚡ How blocking works:</b>\n\n
+        Selected apps are routed through a local VPN tunnel that doesn\'t forward any packets, effectively cutting their internet access.
+    </string>
+    <string name="got_it">Got it</string>
+</resources>
