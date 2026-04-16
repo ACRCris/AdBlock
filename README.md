@@ -13,18 +13,8 @@ Aplicación Android tipo **firewall local + VPN** para control de conectividad p
 - [3. Alcance funcional](#3-alcance-funcional)
 - [4. Arquitectura y estructura](#4-arquitectura-y-estructura)
 - [5. Stack tecnológico](#5-stack-tecnológico)
-- [6. Requisitos](#6-requisitos)
-- [7. Configuración local](#7-configuración-local)
-- [8. Compilar y ejecutar](#8-compilar-y-ejecutar)
-- [9. Testing](#9-testing)
-- [10. Permisos y consideraciones Android 14/15/16](#10-permisos-y-consideraciones-android-141516)
-- [11. Seguridad y blindaje](#11-seguridad-y-blindaje)
-- [12. UX/UI: pantallas y flujo](#12-uxui-pantallas-y-flujo)
-- [13. Troubleshooting](#13-troubleshooting)
-- [14. Roadmap sugerido](#14-roadmap-sugerido)
-- [15. Contribución](#15-contribución)
-- [16. Licencia](#16-licencia)
-
+- [6. Testing](#9-testing)
+- [7. Permisos y consideraciones Android 14/15/16](#10-permisos-y-consideraciones-android-141516)
 ---
 
 ## 1. Objetivo del proyecto
@@ -119,23 +109,23 @@ Estructura general del repositorio:
 - **Plataforma objetivo:** Android moderno (`targetSdk` alto, incluyendo escenarios API 34+ / 36).
 
 
-## 9. Testing
+## 6. Testing
 
 La estrategia recomendada cubre tres niveles:
 
-### 9.1 Unit tests (rápidos)
+### 6.1 Unit tests (rápidos)
 Valida lógica pura:
 - transformación de estado
 - reglas de filtrado de apps
 - cálculo de acciones en ViewModel
 
-### 9.2 Robolectric (framework Android sin dispositivo)
+### 6.2 Robolectric (framework Android sin dispositivo)
 Valida:
 - comportamiento de componentes Android en JVM
 - interacciones con ciclo de vida básico
 - edge cases de recursos/contexto
 
-### 9.3 Instrumentation + Compose UI
+### 6.3 Instrumentation + Compose UI
 Valida:
 - navegación real
 - render y semántica de componentes
@@ -146,7 +136,7 @@ Valida:
 
 ---
 
-## 10. Permisos y consideraciones Android 14/15/16
+## 7. Permisos y consideraciones Android 14/15/16
 
 ### VPN
 La app usa `VpnService`, por lo que requiere consentimiento explícito del usuario (`VpnService.prepare`).
