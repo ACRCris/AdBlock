@@ -1,7 +1,7 @@
 package com.copiloto.addblock.ui.screens
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,12 +20,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.Warning
+import androidx.compose.material.icons.outlined.Call
+import androidx.compose.material.icons.outlined.ChatBubbleOutline
 import androidx.compose.material.icons.outlined.ChevronRight
+import androidx.compose.material.icons.outlined.Contacts
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -33,6 +39,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -359,40 +366,78 @@ fun RecommendationsCard() {
                 shape = RoundedCornerShape(12.dp),
                 color = AmberLight
             ) {
-                Row(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
-                    verticalAlignment = Alignment.Top
+                        .padding(16.dp)
                 ) {
-                    Icon(
-                        Icons.Default.Warning,
-                        contentDescription = null,
-                        tint = AmberDark,
-                        modifier = Modifier.size(20.dp)
-                    )
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Column {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            Icons.Default.Warning,
+                            contentDescription = null,
+                            tint = AmberDark,
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(modifier = Modifier.width(12.dp))
                         Text(
-                            text = "No bloquees Ajustes ni Teléfono",
+                            text = "No bloquees apps del criticas del sistema",
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Medium,
                             color = Color.Black
                         )
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(
-                            text = "Ver apps críticas",
-                            fontSize = 14.sp,
-                            color = BlueDark,
-                            fontWeight = FontWeight.Medium,
-                            modifier = Modifier.clickable { /* Navegar a apps críticas */ }
-                        )
                     }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    // Lista de apps del sistema
+                    SystemAppsList()
                 }
             }
         }
     }
 }
+
+@Composable
+private fun SystemAppsList() {
+    // Lista de apps críticas con iconos Material 3 Outlined (consistente)
+    val systemApps = listOf(
+        SystemAppItem(Icons.Outlined.Settings, "Ajustes"),
+        SystemAppItem(Icons.Outlined.Call, "Teléfono"),
+        SystemAppItem(Icons.Outlined.ChatBubbleOutline, "Mensajes"),
+        SystemAppItem(Icons.Outlined.Email, "Correo"),
+        SystemAppItem(Icons.Outlined.Contacts, "Contactos")
+    )
+
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        systemApps.forEach { app ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Icon(
+                    imageVector = app.icon,
+                    contentDescription = app.name,
+                    modifier = Modifier.size(20.dp),
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                Text(
+                    text = app.name,
+                    fontSize = 14.sp,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
+        }
+    }
+}
+
+private data class SystemAppItem(
+    val icon: ImageVector,
+    val name: String
+)
 
 @Composable
 fun TrustMessageCard() {

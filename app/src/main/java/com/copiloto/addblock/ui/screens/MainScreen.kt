@@ -1,19 +1,13 @@
 package com.copiloto.addblock.ui.screens
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -21,13 +15,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import com.copiloto.addblock.ui.components.AppTopBar
 import com.copiloto.addblock.ui.navigation.NavDestination
 import com.copiloto.addblock.ui.state.AppsUiState
 import com.copiloto.addblock.ui.state.FirewallUiState
-import com.copiloto.addblock.ui.theme.Purple700
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     firewallState: FirewallUiState,
@@ -44,7 +36,6 @@ fun MainScreen(
     onClearDataClick: () -> Unit = {}
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
-    var showHowItWorksSheet by remember { mutableStateOf(false) }
     var showPrivacyPolicy by remember { mutableStateOf(false) }
     val snackbarHostState = remember { SnackbarHostState() }
 
@@ -57,36 +48,19 @@ fun MainScreen(
         return
     }
 
-    // Modal Bottom Sheet - Cómo funciona
-    if (showHowItWorksSheet) {
-        HowItWorksSheet(
-            onDismiss = { showHowItWorksSheet = false },
-            onPrivacyPolicyClick = {
-                showHowItWorksSheet = false
-                showPrivacyPolicy = true
-            }
-        )
+    // Título dinámico según la pestaña seleccionada
+    val currentTitle = when (selectedTab) {
+        0 -> "AdBlock Firewall"
+        1 -> "Apps"
+        2 -> "Info"
+        else -> "AdBlock Firewall"
     }
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("AdBlock Firewall") },
-                actions = {
-                    // Icono de información que lleva a "Cómo funciona"
-                    IconButton(onClick = { showHowItWorksSheet = true }) {
-                        Icon(
-                            Icons.Outlined.Info,
-                            contentDescription = "Información"
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Purple700,
-                    titleContentColor = Color.White,
-                    navigationIconContentColor = Color.White,
-                    actionIconContentColor = Color.White
-                )
+            AppTopBar(
+                title = currentTitle,
+                canNavigateBack = false
             )
         },
         bottomBar = {
@@ -116,7 +90,7 @@ fun MainScreen(
                 onStartFirewall = onStartFirewall,
                 onStopFirewall = onStopFirewall,
                 onTestBlock = onTestBlock,
-                onMoreInfoClick = { showHowItWorksSheet = true }
+                onMoreInfoClick = { selectedTab = 2 }
             )
             1 -> AppsScreen(
                 modifier = Modifier.padding(paddingValues),
@@ -125,6 +99,10 @@ fun MainScreen(
                 onFilterChange = onFilterChange,
                 onToggleAppBlocked = onToggleAppBlocked,
                 onShowCriticalAppsChange = onShowCriticalAppsChange
+            )
+            2 -> InfoScreen(
+                modifier = Modifier.padding(paddingValues),
+                onPrivacyPolicyClick = { showPrivacyPolicy = true }
             )
         }
     }

@@ -1,6 +1,6 @@
 [versions]
 agp = "9.0.0"
-kotlin = "2.2.0"
+kotlin = "2.2.10"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
@@ -13,6 +13,13 @@ activityCompose = "1.9.3"
 composeBom = "2024.12.01"
 navigationCompose = "2.8.5"
 coreKtx = "1.15.0"
+mockito = "5.14.2"
+mockitoKotlin = "5.4.0"
+robolectric = "4.16"
+coroutinesTest = "1.8.1"
+archCoreTesting = "2.2.0"
+turbine = "1.0.0"
+androidxTestCore = "1.6.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -37,8 +44,18 @@ compose-material-icons = { group = "androidx.compose.material", name = "material
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 
+# Testing libraries
+mockito-core = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockito-kotlin = { group = "org.mockito.kotlin", name = "mockito-kotlin", version.ref = "mockitoKotlin" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+arch-core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "archCoreTesting" }
+turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-

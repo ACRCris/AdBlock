@@ -3,10 +3,10 @@ package com.copiloto.addblock.ui.navigation
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Apps
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Schedule
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Apps
 import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.ui.graphics.vector.ImageVector
 
 /**
@@ -32,14 +32,14 @@ sealed class NavDestination(
         unselectedIcon = Icons.Outlined.Apps
     )
 
-    data object Actividad : NavDestination(
-        route = "actividad",
-        label = "Actividad",
-        selectedIcon = Icons.Filled.Schedule,
-        unselectedIcon = Icons.Outlined.Schedule
+    data object Info : NavDestination(
+        route = "info",
+        label = "Info",
+        selectedIcon = Icons.Filled.Info,
+        unselectedIcon = Icons.Outlined.Info
     )
 
     companion object {
-        val items = listOf(Inicio, Apps)
+        val items = listOf(Inicio, Apps, Info)
     }
 }

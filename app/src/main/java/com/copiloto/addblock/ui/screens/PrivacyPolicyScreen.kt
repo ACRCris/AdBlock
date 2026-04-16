@@ -16,7 +16,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Lock
@@ -26,14 +25,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -43,13 +38,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.copiloto.addblock.ui.components.AppTopBar
 import com.copiloto.addblock.ui.theme.AmberDark
 import com.copiloto.addblock.ui.theme.AmberLight
 import com.copiloto.addblock.ui.theme.BlueDark
 import com.copiloto.addblock.ui.theme.GreenDark
-import com.copiloto.addblock.ui.theme.Purple700
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PrivacyPolicyScreen(
     onBackClick: () -> Unit,
@@ -57,21 +51,10 @@ fun PrivacyPolicyScreen(
 ) {
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Política de privacidad") },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Volver",
-                            tint = Color.White
-                        )
-                    }
-                },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Purple700,
-                    titleContentColor = Color.White
-                )
+            AppTopBar(
+                title = "Política de privacidad",
+                canNavigateBack = true,
+                onNavigateBack = onBackClick
             )
         }
     ) { paddingValues ->
